@@ -37,12 +37,17 @@ use App\Http\Controllers\UserController;
 // Route::view('user-form','user-form');
 // Route::post('adduser',[UserController::class,'addUser']);
 
-Route::get('/', function () {
-    return view('come');
+// Route::get('/', function () {
+//     return view('come');
+// });
+
+// Route::view('home2','home2')->middleware('check1');
+// Route::view('/user','home2');
+// Route::view('about2/{name}','about2');
+
+Route::middleware('check1')->group(function(){
+    Route::view('about2','about2');
+    Route::view('contact','about2');
+    Route::view('list','about2');
+    Route::view('home2','home2');
 });
-
-Route::view('home2','home2');
-Route::view('/user','home2');
-
-Route::view('about2','about2');
-Route::view('about2/{name}','about2');
