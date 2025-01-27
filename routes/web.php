@@ -5,6 +5,7 @@ use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UsController;
 use App\Http\Controllers\UserloginController;
+use App\Http\Controllers\UploadController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -118,5 +119,10 @@ Route::get('/', function () {
 
 
 // ------------------Flash Session---------------
-Route::post('add',[UserloginController::class,'adduser']);
-Route::view('user','login');
+// Route::post('add',[UserloginController::class,'adduser']);
+// Route::view('user','login');
+
+
+// ------------------Upload and Display image---------------
+Route::view('upload','upload');
+Route::post('upload',[UploadController::class,'upload']);

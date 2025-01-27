@@ -19,8 +19,8 @@ class UserloginController extends Controller
 
     function adduser(Request $request){
         // return "add user function";
-        $request->session()->flash('message','User has been added successfully');
-        $request->session()->flash('name','abc');
+        $request->session()->flash('message','user had been added sucessfully');
+        $request->session()->flash('name','aditi');
         return redirect('user');
     }
 }

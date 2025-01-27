@@ -16,18 +16,19 @@
 <!-- flash session -->
 <div>
     <h1>Add New User</h1>
+    <!-- {{session('message')}} -->
 
     @if(session('message'))
     <span class="success-message">{{session('message')}}</span>
     @endif
-<!-- {{session()->reflash()}} -->
+    <!-- {{session()->reflash()}} -->
 
     @if(session('name'))
     <span class="success-message">{{session('name')}}</span>
     @endif
 
-    {{session()->keep(['name'])}}  
-      
+    {{session()->keep(['name'])}}
+
     <form action="add" method="post">
         @csrf
         <input type="text" name="username" placeholder="Enter User name">
