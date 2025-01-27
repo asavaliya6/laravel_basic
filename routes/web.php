@@ -6,6 +6,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UsController;
 use App\Http\Controllers\UserloginController;
 use App\Http\Controllers\UploadController;
+use App\Http\Controllers\StdController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -124,5 +125,36 @@ Route::get('/', function () {
 
 
 // ------------------Upload and Display image---------------
-Route::view('upload','upload');
-Route::post('upload',[UploadController::class,'upload']);
+// Route::view('upload','upload');
+// Route::post('upload',[UploadController::class,'upload']);
+
+
+// ------------localization------------------------
+// Route::middleware('SetLang')->group(function(){
+//     Route::get('/', function () {
+//         return view('wel');
+//     });
+
+//     // Route::get('about3/{lang}',function($lang){
+//     //     App::setlocale($lang);
+//     //     return view('about3');
+//     // });
+    
+//     Route::view('about3','about3');
+
+//     Route::get('setlang/{lang}',function($lang){
+//         Session::put('lang',$lang);
+//         return redirect('/');
+//     });
+// });
+
+
+// -----------------insert,edit,delete data-----------------
+Route::view('add','add-student');
+Route::post('add',[StdController::class,'add']);
+Route::get('list',[StdController::class,'list']);
+Route::get('delete/{id}',[StdController::class,'delete']);
+Route::get('edit/{id}',[StdController::class,'edit']);
+Route::put('edit-std/{id}',[StdController::class,'editStd']);
+Route::get('search',[StdController::class,'search']);
+Route::post('delete-multi',[StdController::class,'deleteMultiple']);
