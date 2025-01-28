@@ -163,3 +163,5 @@ Route::get('/', function () {
 // ------------------image image with database----------------
 // Route::post('image',[ImageController::class,'image']);
 // Route::get('list',[ImageController::class,'list']);
+
+
