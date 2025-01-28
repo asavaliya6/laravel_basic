@@ -5,8 +5,8 @@ use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\UsController;
 use App\Http\Controllers\UserloginController;
-use App\Http\Controllers\UploadController;
 use App\Http\Controllers\StdController;
+use App\Http\Controllers\ImageController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -124,9 +124,9 @@ Route::get('/', function () {
 // Route::view('user','login');
 
 
-// ------------------Upload and Display image---------------
-// Route::view('upload','upload');
-// Route::post('upload',[UploadController::class,'upload']);
+// ------------------image and Display image---------------
+// Route::view('image','image');
+// Route::post('image',[imageController::class,'image']);
 
 
 // ------------localization------------------------
@@ -150,11 +150,16 @@ Route::get('/', function () {
 
 
 // -----------------insert,edit,delete data-----------------
-Route::view('add','add-student');
-Route::post('add',[StdController::class,'add']);
-Route::get('list',[StdController::class,'list']);
-Route::get('delete/{id}',[StdController::class,'delete']);
-Route::get('edit/{id}',[StdController::class,'edit']);
-Route::put('edit-std/{id}',[StdController::class,'editStd']);
-Route::get('search',[StdController::class,'search']);
-Route::post('delete-multi',[StdController::class,'deleteMultiple']);
+// Route::view('add','add-student');
+// Route::post('add',[StdController::class,'add']);
+// Route::get('list',[StdController::class,'list']);
+// Route::get('delete/{id}',[StdController::class,'delete']);
+// Route::get('edit/{id}',[StdController::class,'edit']);
+// Route::put('edit-std/{id}',[StdController::class,'editStd']);
+// Route::get('search',[StdController::class,'search']);
+// Route::post('delete-multi',[StdController::class,'deleteMultiple']);
+
+
+// ------------------image image with database----------------
+// Route::post('image',[ImageController::class,'image']);
+// Route::get('list',[ImageController::class,'list']);
