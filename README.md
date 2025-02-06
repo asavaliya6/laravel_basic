@@ -30,9 +30,9 @@ php artisan install:api ---> yes
 
 ## Requirements
 
-PHP = 8.3.16
-Composer = 2.8.4
-Laravel = 5.11.2
+- PHP = 8.3.16
+- Composer = 2.8.4
+- Laravel = 5.11.2
 
 ## Summary of this lesson:
 
