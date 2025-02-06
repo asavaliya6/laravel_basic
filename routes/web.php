@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\App;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User2Controller;
 use App\Http\Controllers\StudentController;
@@ -94,7 +96,7 @@ Route::get('/', function () {
 //--------------Any & Match Router Function-------------
 // Route::get('user',[User2Controller::class, 'any']);
 // Route::post('user',[User2Controller::class, 'any']);
-// Route::put('use r',[User2Controller::class, 'any']);
+// Route::put('user',[User2Controller::class, 'any']);
 // Route::delete('user',[User2Controller::class, 'any']);
 
 // Route::any('user',[User2Controller::class,'any']);
@@ -128,26 +130,27 @@ Route::get('/', function () {
 // Route::view('image','image');
 // Route::post('image',[imageController::class,'image']);
 
+// ------------------image image with database----------------
+// Route::post('image',[ImageController::class,'image']);
+// Route::get('list',[ImageController::class,'list']);
 
 // ------------localization------------------------
-// Route::middleware('SetLang')->group(function(){
-//     Route::get('/', function () {
-//         return view('wel');
-//     });
 
-//     // Route::get('about3/{lang}',function($lang){
-//     //     App::setlocale($lang);
-//     //     return view('about3');
-//     // });
-    
-//     Route::view('about3','about3');
+Route::middleware('SetLang')->group(function () {
+    Route::get('/', function () {
+        return view('wel'); // Your main welcome page
+    });
 
-//     Route::get('setlang/{lang}',function($lang){
-//         Session::put('lang',$lang);
-//         return redirect('/');
-//     });
-// });
+    Route::get('/about3', function () {
+        return view('about3'); // About Page
+    });
 
+    // Route to switch language
+    Route::get('/setlang/{lang}', function ($lang, Request $request) {
+        session(['lang' => $lang]); // Store language in session
+        return redirect()->back(); // Redirect back to the previous page
+    });
+});
 
 // -----------------insert,edit,delete data-----------------
 // Route::view('add','add-student');
@@ -160,8 +163,6 @@ Route::get('/', function () {
 // Route::post('delete-multi',[StdController::class,'deleteMultiple']);
 
 
-// ------------------image image with database----------------
-// Route::post('image',[ImageController::class,'image']);
-// Route::get('list',[ImageController::class,'list']);
+
 
 
