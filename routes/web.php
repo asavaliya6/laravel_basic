@@ -135,32 +135,31 @@ Route::get('/', function () {
 // Route::get('list',[ImageController::class,'list']);
 
 // ------------localization------------------------
+// Route::middleware('SetLang')->group(function () {
+//     Route::get('/', function () {
+//         return view('wel'); // Your main welcome page
+//     });
 
-Route::middleware('SetLang')->group(function () {
-    Route::get('/', function () {
-        return view('wel'); // Your main welcome page
-    });
+//     Route::get('/about3', function () {
+//         return view('about3'); // About Page
+//     });
 
-    Route::get('/about3', function () {
-        return view('about3'); // About Page
-    });
-
-    // Route to switch language
-    Route::get('/setlang/{lang}', function ($lang, Request $request) {
-        session(['lang' => $lang]); // Store language in session
-        return redirect()->back(); // Redirect back to the previous page
-    });
-});
+//     // Route to switch language
+//     Route::get('/setlang/{lang}', function ($lang, Request $request) {
+//         session(['lang' => $lang]); // Store language in session
+//         return redirect()->back(); // Redirect back to the previous page
+//     });
+// });
 
 // -----------------insert,edit,delete data-----------------
-// Route::view('add','add-student');
-// Route::post('add',[StdController::class,'add']);
-// Route::get('list',[StdController::class,'list']);
-// Route::get('delete/{id}',[StdController::class,'delete']);
-// Route::get('edit/{id}',[StdController::class,'edit']);
-// Route::put('edit-std/{id}',[StdController::class,'editStd']);
-// Route::get('search',[StdController::class,'search']);
-// Route::post('delete-multi',[StdController::class,'deleteMultiple']);
+Route::view('add','add-student');
+Route::post('add',[StdController::class,'add']);
+Route::get('list',[StdController::class,'list']);
+Route::get('delete/{id}',[StdController::class,'delete']);
+Route::get('edit/{id}',[StdController::class,'edit']);
+Route::put('edit-std/{id}',[StdController::class,'editStd']);
+Route::get('search',[StdController::class,'search']);
+Route::post('delete-multi',[StdController::class,'deleteMultiple']);
 
 
 
