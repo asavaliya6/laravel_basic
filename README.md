@@ -78,3 +78,4 @@ php artisan install:api ---> yes
 - localization
 - without model insert,edit,delete data
 - with model insert,edit,delete data
+- Create Custom Login,Register,Logout and Forgot Password
