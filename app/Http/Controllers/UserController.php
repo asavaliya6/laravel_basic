@@ -3,6 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use DataTables;
 
 class UserController extends Controller
 {
@@ -25,5 +31,58 @@ class UserController extends Controller
             'city.uppercase'=>'city should be in uppercase only',
         ]);
         return $request;
+    }
+
+    public function dashboard(Request $request)
+    {
+        return view('dashboard');
+    }
+
+    public function users(Request $request)
+    {
+        $users = User::get();
+        return view('users', compact('users'));
+    }
+    public function logout(Request $request)
+    {
+        Session::flush();
+        Auth::logout();
+  
+        return redirect()->route('login')->with('success', 'You have been logged out.');
+    }
+    public function index()
+    {
+        $users = User::select(
+                DB::raw("COUNT(id) as count"),
+                DB::raw("DATE_FORMAT(created_at, '%b') as month")
+            )
+            ->groupBy('month')
+            ->orderByRaw("STR_TO_DATE(month, '%b')") 
+            ->get();
+        $chartData = [
+            'labels' => $users->pluck('month')->toArray(),  
+            'values' => $users->pluck('count')->toArray(),  
+        ];
+
+        return view('charts', compact('chartData'));
+    }
+    public function userPieData()
+    {
+        $usersByDate = User::select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
+                            ->groupBy('date')
+                            ->orderBy('date', 'ASC')
+                            ->get();
+    
+        $labels = $usersByDate->pluck('date')->toArray(); 
+        $counts = $usersByDate->pluck('count')->toArray(); 
+    
+        return response()->json([
+            'labels' => $labels,
+            'counts' => $counts
+        ]);
+    }
+    public function ribbons(Request $request)
+    {
+        return view('ribbons');
     }
 }

@@ -12,6 +12,8 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingsController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -140,7 +142,7 @@ Route::get('/', function () {
 // ------------localization------------------------
 // Route::middleware('SetLang')->group(function () {
 //     Route::get('/', function () {
-//         return view('wel'); // Your main welcome page
+//         return view('wel'); // main welcome page
 //     });
 
 //     Route::get('/about3', function () {
@@ -170,12 +172,23 @@ Route::get('login', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post'); 
 Route::get('registration', [AuthController::class, 'registration'])->name('register');
 Route::post('post-registration', [AuthController::class, 'postRegistration'])->name('register.post'); 
-Route::get('dashboard', [AuthController::class, 'dashboard']); 
-Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+// Route::get('dashboard', [AuthController::class, 'dashboard']); 
+// Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
+// -------------------------admin panel-------------------------------------
+Route::get('dashboard', [UserController::class, 'dashboard']);
+Route::get('users', [UserController::class, 'users']);
+Route::get('/user-chart-data', [UserController::class, 'userChartData'])->name('user.chart.data');
+Route::get('/user-pie-data', [UserController::class, 'userPieData'])->name('user.pie.data');
+Route::get('/ribbons', [UserController::class, 'ribbons']);
+Route::post('logout', [UserController::class, 'logout'])->name('logout');
 
+Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
+Route::post('/settings/store', [SettingsController::class, 'store'])->name('settings.store');
+Route::put('/settings/update/{id}', [SettingsController::class, 'update'])->name('settings.update'); 
+Route::delete('/settings/delete/{id}', [SettingsController::class, 'destroy'])->name('settings.delete');

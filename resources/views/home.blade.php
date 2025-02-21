@@ -1,20 +1,20 @@
-@extends('layouts.app')  
+<!-- @extends('layouts.app')  
  
-@section('content') 
+@section('content')  -->
         <!-- Page header with logo and tagline-->
-        <header class="py-5 bg-light border-bottom mb-4">
+        <!-- <header class="py-5 bg-light border-bottom mb-4">
             <div class="container">
                 <div class="text-center my-5">
                     <h1 class="fw-bolder">Welcome to Blog Home!</h1>
                     <p class="lead mb-0">A Bootstrap 5 starter layout for your next blog homepage</p>
                 </div>
             </div>
-        </header>
+        </header> -->
         <!-- Page content-->
-        <div class="container">
-            <div class="row">
+        <!-- <div class="container">
+            <div class="row"> -->
                 <!-- Blog entries-->
-                <div class="col-lg-8">
+                <!-- <div class="col-lg-8"> -->
                     <!-- Featured blog post-->
                     <!-- <div class="card mb-4">
                         <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
@@ -26,13 +26,13 @@
                         </div>
                     </div> -->
                     <!-- Nested row for non-featured blog posts -->
-                    <div class="row">
+                    <!-- <div class="row">
                         @foreach($posts as $post) 
-                            <div class="col-lg-6">
+                            <div class="col-lg-6"> -->
                                 <!-- Blog post-->
-                                <div class="card mb-4">
+                                <!-- <div class="card mb-4"> -->
                                     <!-- <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a> -->
-                                    <a href="{{ route('post.show', $post) }}"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>  
+                                    <!-- <a href="{{ route('post.show', $post) }}"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>  
                                     <div class="card-body">
                                         <div class="small text-muted">{{ $post->created_at }}</div>
                                         <h2 class="card-title h4">{{ $post->title }}</h2>
@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach 
+                        @endforeach  -->
                         <!-- <div class="col-lg-6"> -->
                             <!-- Blog post-->
                             <!-- <div class="card mb-4">
@@ -86,7 +86,7 @@
                                 </div>
                             </div>
                         </div> -->
-                    </div>
+                    <!-- </div> -->
                     <!-- Pagination-->
                     <!-- <nav aria-label="Pagination">
                         <hr class="my-0" />
@@ -100,9 +100,9 @@
                             <li class="page-item"><a class="page-link" href="#!">Older</a></li>
                         </ul>
                     </nav> -->
-                </div>
+                <!-- </div> -->
                 <!-- Side widgets-->
-                <div class="col-lg-4">
+                <!-- <div class="col-lg-4"> -->
                     <!-- Search widget-->
                     <!-- <div class="card mb-4">
                         <div class="card-header">Search</div>
@@ -114,21 +114,21 @@
                         </div>
                     </div> -->
                     <!-- Categories widget-->
-                    <div class="card mb-4">
+                    <!-- <div class="card mb-4">
                         <div class="card-header">Categories</div>
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
-                                    @foreach($categories as $category) 
+                                    @foreach($categories as $category)  -->
                                         <!-- <li><a href="#!">{{ $category->name }}</a></li>  -->
-                                        <li><a href="{{ route('home') }}?category_id={{ $category->id }}">{{ $category->name }}</a></li> 
-                                    @endforeach
+                                        <!-- <li><a href="{{ route('home') }}?category_id={{ $category->id }}">{{ $category->name }}</a></li> 
+                                    @endforeach -->
                                         <!-- <li><a href="#!">Web Design</a></li>
                                         <li><a href="#!">HTML</a></li>
                                         <li><a href="#!">Freebies</a></li> -->
-                                    </ul>
-                                </div>
+                                    <!-- </ul>
+                                </div> -->
                                 <!-- <div class="col-sm-6">
                                     <ul class="list-unstyled mb-0">
                                         <li><a href="#!">JavaScript</a></li>
@@ -136,15 +136,37 @@
                                         <li><a href="#!">Tutorials</a></li>
                                     </ul>
                                 </div> -->
-                            </div>
+                            <!-- </div>
                         </div>
-                    </div>
+                    </div> -->
                     <!-- Side widget-->
                     <!-- <div class="card mb-4">
                         <div class="card-header">Side Widget</div>
                         <div class="card-body">You can put anything you want inside of these side widgets. They are easy to use, and feature the Bootstrap 5 card component!</div>
                     </div> -->
-                </div>
+                <!-- </div>
             </div>
         </div>
-@endsection 
+@endsection  -->
+
+
+@extends('adminlte::page')
+
+@section('title', 'Dashboard')
+
+@section('content_header')
+    <h1>Dashboard</h1>
+@stop
+
+@section('content')
+    <p>Welcome to this beautiful admin panel.</p>
+@stop
+
+@section('css')
+    {{-- Add here extra stylesheets --}}
+    {{-- <link rel="stylesheet" href="/css/admin_custom.css"> --}}
+@stop
+
+@section('js')
+    <script> console.log("Hi, I'm using the Laravel-AdminLTE package!"); </script>
+@stop

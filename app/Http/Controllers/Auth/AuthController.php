@@ -17,10 +17,12 @@ class AuthController extends Controller
     {
         return view('auth.login');
     }  
+
     public function registration(): View
     {
         return view('auth.registration');
     }
+
     public function postLogin(Request $request): RedirectResponse
     {
         $request->validate([
@@ -36,6 +38,7 @@ class AuthController extends Controller
   
         return redirect("login")->withError('Oppes! You have entered invalid credentials');
     }
+
     public function postRegistration(Request $request)
     {
         $request->validate([
@@ -54,6 +57,7 @@ class AuthController extends Controller
     
         return redirect("dashboard")->withSuccess('Great! You have Successfully logged in');
     }
+
     public function dashboard()
     {
         if(Auth::check()){
@@ -62,6 +66,7 @@ class AuthController extends Controller
   
         return redirect("login")->withSuccess('Opps! You do not have access');
     }
+
     public function create(array $data)
     {
       return Newuser::create([
@@ -70,6 +75,7 @@ class AuthController extends Controller
         'password' => Hash::make($data['password'])
       ]);
     }
+
     public function logout()
     {
         Session::flush();
@@ -77,4 +83,5 @@ class AuthController extends Controller
   
         return Redirect('login');
     }
+    
 }
