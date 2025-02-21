@@ -16,7 +16,6 @@
                 <li>
                     <a class="dropdown-item" href="#">
                         <div class="d-flex align-items-center">
-                            <!-- <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="rounded-circle me-2" width="40"> -->
                             <div>
                                 <strong>Brad Diesel</strong>
                                 <p class="mb-0">Call me whenever you can...</p>
