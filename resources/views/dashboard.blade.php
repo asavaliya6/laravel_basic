@@ -75,7 +75,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        // Fetch Bar Chart Data (Users Per Day)
+        // Fetch Bar Chart
         fetch("{{ route('user.bar.data') }}")
             .then(response => response.json())
             .then(data => {
@@ -107,7 +107,7 @@
                 barChart.render();
             });
 
-        // Fetch Pie Chart Data (Users Per Day)
+        // Fetch Pie Chart
         fetch("{{ route('user.pie.data') }}")
             .then(response => response.json())
             .then(data => {
@@ -121,10 +121,10 @@
                 let pieChart = new Chart(ctx, {
                     type: "pie",
                     data: {
-                        labels: data.labels, // Dates as labels
+                        labels: data.labels, 
                         datasets: [{
                             label: "User Registrations Per Day",
-                            data: data.counts, // Number of users per date
+                            data: data.counts, 
                             backgroundColor: [
                                 "rgba(255, 99, 132, 0.7)",
                                 "rgba(54, 162, 235, 0.7)",
