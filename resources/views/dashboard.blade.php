@@ -75,10 +75,11 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        fetch("{{ route('user.pie.data') }}")
+        // Fetch Bar Chart Data (Users Per Day)
+        fetch("{{ route('user.bar.data') }}")
             .then(response => response.json())
             .then(data => {
-                var options = {
+                var barOptions = {
                     series: [{
                         name: "Users",
                         data: data.counts
@@ -101,17 +102,29 @@
                         categories: data.labels,
                     }
                 };
-                var apexChart = new ApexCharts(document.querySelector("#userApexChart"), options);
-                apexChart.render();
+
+                var barChart = new ApexCharts(document.querySelector("#userApexChart"), barOptions);
+                barChart.render();
+            });
+
+        // Fetch Pie Chart Data (Users Per Day)
+        fetch("{{ route('user.pie.data') }}")
+            .then(response => response.json())
+            .then(data => {
+                if (!data || data.labels.length === 0) {
+                    console.error("No data received for Pie Chart.");
+                    return;
+                }
 
                 let ctx = document.getElementById("userPieChart").getContext("2d");
-                new Chart(ctx, {
+
+                let pieChart = new Chart(ctx, {
                     type: "pie",
                     data: {
-                        labels: data.labels,
+                        labels: data.labels, // Dates as labels
                         datasets: [{
-                            label: "User Registrations",
-                            data: data.counts,
+                            label: "User Registrations Per Day",
+                            data: data.counts, // Number of users per date
                             backgroundColor: [
                                 "rgba(255, 99, 132, 0.7)",
                                 "rgba(54, 162, 235, 0.7)",
@@ -127,8 +140,11 @@
                         responsive: true
                     }
                 });
-            });
+
+            })
+            .catch(error => console.error("Error loading Pie Chart Data:", error));
     });
 </script>
+
 
 @endsection

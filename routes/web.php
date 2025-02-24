@@ -183,8 +183,8 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 // -------------------------admin panel-------------------------------------
 Route::get('dashboard', [UserController::class, 'dashboard']);
 Route::get('users', [UserController::class, 'users']);
-Route::get('/user-chart-data', [UserController::class, 'userChartData'])->name('user.chart.data');
-Route::get('/user-pie-data', [UserController::class, 'userPieData'])->name('user.pie.data');
+Route::get('/users/bar-data', [UserController::class, 'getBarChartData'])->name('user.bar.data');
+Route::get('/users/pie-data', [UserController::class, 'getPieChartData'])->name('user.pie.data');
 Route::get('/ribbons', [UserController::class, 'ribbons']);
 Route::post('logout', [UserController::class, 'logout'])->name('logout');
 

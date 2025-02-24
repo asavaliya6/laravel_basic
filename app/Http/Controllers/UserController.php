@@ -50,39 +50,37 @@ class UserController extends Controller
   
         return redirect()->route('login')->with('success', 'You have been logged out.');
     }
-    public function index()
-    {
-        $users = User::select(
-                DB::raw("COUNT(id) as count"),
-                DB::raw("DATE_FORMAT(created_at, '%b') as month")
-            )
-            ->groupBy('month')
-            ->orderByRaw("STR_TO_DATE(month, '%b')") 
-            ->get();
-        $chartData = [
-            'labels' => $users->pluck('month')->toArray(),  
-            'values' => $users->pluck('count')->toArray(),  
-        ];
 
-        return view('charts', compact('chartData'));
-    }
-    public function userPieData()
+    // Bar Chart
+    public function getBarChartData()
     {
-        $usersByDate = User::select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as count'))
-                            ->groupBy('date')
-                            ->orderBy('date', 'ASC')
-                            ->get();
-    
-        $labels = $usersByDate->pluck('date')->toArray(); 
-        $counts = $usersByDate->pluck('count')->toArray(); 
-    
+        $users = User::selectRaw("DATE(created_at) as date, COUNT(*) as count")
+            ->groupBy('date')
+            ->orderBy('date', 'ASC')
+            ->get();
+
         return response()->json([
-            'labels' => $labels,
-            'counts' => $counts
+            'labels' => $users->pluck('date'),
+            'counts' => $users->pluck('count'),
         ]);
     }
-    public function ribbons(Request $request)
+
+    // Pie Chart
+    public function getPieChartData()
     {
-        return view('ribbons');
+        $users = User::selectRaw("DATE(created_at) as date, COUNT(*) as count")
+            ->groupBy('date')
+            ->orderBy('date', 'ASC')
+            ->get();
+    
+        return response()->json([
+            'labels' => $users->pluck('date'),
+            'counts' => $users->pluck('count'),
+        ]);
+    }    
+
+    public function ribbons(Request $request){
+        return view("ribbons");
     }
+
 }
