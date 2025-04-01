@@ -192,3 +192,8 @@ Route::get('/settings', [SettingsController::class, 'index'])->name('settings');
 Route::post('/settings/store', [SettingsController::class, 'store'])->name('settings.store');
 Route::put('/settings/update/{id}', [SettingsController::class, 'update'])->name('settings.update'); 
 Route::delete('/settings/delete/{id}', [SettingsController::class, 'destroy'])->name('settings.delete');
+
+// ---------------------------------import-export file------------------------------
+Route::get('userfile', [UserController::class, 'index']);
+Route::get('users-export', [UserController::class, 'export'])->name('users.export');
+Route::post('users-import', [UserController::class, 'import'])->name('users.import');

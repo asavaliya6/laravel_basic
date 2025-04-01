@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use DataTables;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
 
 class UserController extends Controller
 {
@@ -81,6 +84,29 @@ class UserController extends Controller
 
     public function ribbons(Request $request){
         return view("ribbons");
+    }
+
+    public function index()
+    {
+        $users = User::get();
+  
+        return view('userfile', compact('users'));
+    }
+
+    public function export() 
+    {
+        return Excel::download(new UsersExport, 'users.csv');
+    }
+
+    public function import(Request $request) 
+    {
+        $request->validate([
+            'file' => 'required|max:2048',
+        ]);
+  
+        Excel::import(new UsersImport, $request->file('file'));
+                 
+        return back()->with('success', 'Users imported successfully.');
     }
 
 }

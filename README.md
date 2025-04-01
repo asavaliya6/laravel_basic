@@ -80,3 +80,8 @@ php artisan install:api ---> yes
 - with model insert,edit,delete data
 - Create Custom Login,Register,Logout and Forgot Password
 - Generate Admin panel using admin LTE https://adminlte.io/docs/3.1//upgrade-guide.html
+
+## Import and Export Files
+
+- Create Import and Export class
+- Update controller and view and add route

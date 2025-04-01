@@ -12,6 +12,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Users
                 </a>
+                <a class="nav-link" href="/userfile">
+                    <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Files
+                </a>
             </div>
         </div>
         <div class="sb-sidenav-footer">
